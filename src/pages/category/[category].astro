@@ -1,0 +1,11 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Quiz from '../../islands/Quiz';
+
+// Obtenemos el parámetro 'category' de la URL
+const { category = "" } = Astro.params;
+---
+
+<Layout title={category}>
+  <Quiz category={category} client:only="react"/>
+</Layout>

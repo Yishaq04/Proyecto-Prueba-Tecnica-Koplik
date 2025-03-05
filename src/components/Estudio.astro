@@ -1,0 +1,42 @@
+---
+import Cards from "./cards.astro"; // Importamos el componente Cards, que muestra las tarjetas de cada tema
+
+
+---
+
+<!-- Contenedor principal con bordes superior e inferior de color y altura mínima -->
+<div id={Astro.props.id} class="w-full border-bulma border-t-4 border-b-4 min-h-45 relative">
+    <!-- Contenedor que ocupa toda la anchura y centra su contenido vertical y horizontalmente -->
+    <div class="bg-cross w-full md:border-x-4 flex flex-col justify-center items-center">
+        <!-- Área desplazable verticalmente con padding para pantallas medianas -->
+        <div class="overflow-y-auto w-full">
+            <!-- Título principal -->
+            <h1 class="hidden md:block text-4xl text-white text-center">
+                Estudia A <span class="text-[#F2D95D]">Tu Manera!</span>
+            </h1>
+
+            <h3 class="hidden md:block text-2xl text-center md:mb-4">
+                Empieza a Estudiar y Conoce Nuestras Herramientas de Estudio
+            </h3>
+
+            <!-- Sección para el contenido de "QUIZZ" con bordes superiores -->
+            <div class="w-full border-t-4 hover:bg-cross py-2 flex flex-col justify-center items-center">
+                <h1 class="text-2xl my-4 text-center text-white">
+                    QUIZZ
+                </h1>
+                
+                <!-- Componente que contiene las tarjetas de categorías para iniciar los cuestionarios -->
+                <div class="w-full border-t-4 hover:bg-cross py-2 flex justify-center items-center">
+                    <Cards />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<style>
+    h3{
+        font-family: "Onest Variable", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;;
+    }
+</style>

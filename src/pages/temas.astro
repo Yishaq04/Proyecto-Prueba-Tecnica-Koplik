@@ -1,0 +1,111 @@
+---
+import Layout from "../layouts/Layout.astro";
+import AsideMenu from "../components/AsideMenu.astro"; // Componente para el menú lateral
+import Header from "../components/Header"; // Componente para la cabecera con el logo o la navegación
+import Estudio from "../components/Estudio.astro"; // Componente que contiene la sección de preguntas
+
+---
+
+<Layout>
+  <html>
+    <head> 
+
+    </head>
+      
+    <!-- Contenedor principal de la página con diseño de grid -->
+    <div id="app" class="relative h-screen p-2 gap-2">
+      <!-- Barra lateral que contiene el menú, encabezado y botones de navegación -->
+      <aside class="[grid-area:aside] flex-col flex overflow-auto rounded-2xl items-center ">
+        
+        <Header /> <!-- Muestra el encabezado con el logo -->
+        <AsideMenu /> <!-- Para la foto de perfil -->
+
+        <!-- Boton que dirige al usuario a la sección del quiz -->
+        <a href="#Quiz" class="inline-flex items-center mt-14 px-4 py-2 text-sm font-medium text-gray-900 bg-white border rounded-lg hover:bg-gray-100 hover:text-yellow-400">
+          Empezar a Estudiar
+        </a>
+      
+        <!-- Botón para cerrar sesión que redirige a la página de inicio -->
+        <a href="/" class="inline-flex items-center mt-5 px-4 py-2 text-sm font-medium text-gray-900 bg-white border rounded-lg hover:bg-gray-100 hover:text-yellow-400">
+          Cerrar sesión
+      </a>
+       
+      </aside>
+
+      <!-- Contenido principal de la página -->
+      <main class="[grid-area:main] overflow-y-auto">
+        <div class="mt-10 screen flex items-center justify-center">
+          <div class="bg-white p-8 rounded-2xl shadow-lg w-270 text-center">
+
+            <!-- Mensaje de bienvenida personalizado con el nombre del usuario -->
+            <h1 id="welcomeMessage" class="text-5xl font-bold mb-4 text-black text-center"></h1>
+            <div class="">
+                <p class="mt-4 text-3xl"> ¿Con que te gustaria empezar a estudiar hoy?</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sección de tipografía estilo Koplik-->
+        <div id="Letras" class="mx-40 my-10 h-auto flex flex-col justify-between">
+          <div class="md:flex-[0.4] items-end justify-end flex">
+            <h1 class="text-2xl md:text-7xl font-rubik text-white">MEDICINA</h1>
+          </div>
+
+          <div class="md:flex-[0.4] items-end justify-end flex">
+            <h1 class="text-2xl md:text-7xl font-rubik text-white">
+              TECNOLOGIA
+            </h1>
+          </div>
+
+          <div class="md:flex-[0.4] items-start">
+            <h1 class="text-2xl md:text-7xl font-rubik text-white">
+              EDUCACION
+            </h1>
+          </div>
+        </div>
+        
+        <!-- Componente que carga la sección de preguntas -->
+        <Estudio id="Quiz"/>
+      </main>
+
+    </div>
+
+    <!-- Script para obtener los datos del usuario almacenados en localStorage -->
+    <script type="module">
+        const userName = localStorage.getItem("name");
+        const userEmail = localStorage.getItem("email");
+      
+        if (userName && userEmail) {
+          document.getElementById("greeting").innerHTML =
+            `<strong>${userName}</strong><br><strong>${userEmail}</strong>`;
+      
+          // Mensaje de bienvenida personalizado
+          document.getElementById("welcomeMessage").innerHTML =
+            `¡Hola, <strong>${userName}</strong>! Nos da gusto verte nuevamente`;
+        }
+      </script>
+
+      
+
+    <style>
+    /* Fuente para los títulos de las letras tipo Koplik*/
+    #Letras{
+        font-family: "Rubik Mono One";
+    }
+
+    #welcomeMessage,p{
+        font-family: "Onest Variable", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;;
+    }
+
+      /* Diseño de grid para la página */
+      #app {
+        display: grid;
+        grid-template-areas:
+          "aside main main"
+          "player player player";
+        grid-template-columns: 350px 1fr;
+        grid-template-rows: 1fr auto;
+      }
+    </style>
+  </html>
+</Layout>
